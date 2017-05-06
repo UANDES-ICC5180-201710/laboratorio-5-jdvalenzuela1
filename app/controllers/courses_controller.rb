@@ -1,5 +1,5 @@
 class CoursesController < ApplicationController
-  before_action :set_course, only: [:show, :edit, :update, :destroy]
+  before_action :set_course, only: [:show, :edit, :update, :destroy, :students, :assignments]
 
   # GET /courses
   # GET /courses.json
@@ -59,6 +59,13 @@ class CoursesController < ApplicationController
       format.html { redirect_to courses_url, notice: 'Course was successfully destroyed.' }
       format.json { head :no_content }
     end
+  end
+
+  def students
+  end
+
+  def assignments
+    @assignment = Assignment.where("course_id = ?", @course.id)
   end
 
   private
